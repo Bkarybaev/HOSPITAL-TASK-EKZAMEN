@@ -8,6 +8,7 @@ import hospital.models.Patient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class HospitalDaoImpl implements HospitalDao {
     @Override
@@ -17,13 +18,10 @@ public class HospitalDaoImpl implements HospitalDao {
     }
 
     @Override
-    public Hospital findHospitalById(Long id) {
-        for (Hospital h : DataBase.hospitals) {
-            if (h.getId().equals(id)){
-                return h;
-            }
-        }
-        return null;
+    public Optional<Hospital> findHospitalById(Long id) {
+        return DataBase.hospitals.stream()
+                .filter(hospital -> hospital.getId().equals(id))
+                .findFirst();
     }
 
     @Override
@@ -32,15 +30,17 @@ public class HospitalDaoImpl implements HospitalDao {
     }
 
     @Override
-    public List<Patient> getAllPatientFromHospital(Long id) {
-        Hospital hospitalById = findHospitalById(id);
-        return hospitalById.getPatients();
+    public Optional<Patient>  getAllPatientFromHospital(Long id) {
+       return DataBase.hospitals.stream()
+                .filter(hospital -> hospital.getId().equals(id))
+                .flatMap(hospital -> hospital.getPatients().stream())
+                .findFirst();
     }
 
     @Override
     public String deleteHospitalById(Long id) {
-        Hospital hospitalById = findHospitalById(id);
-        DataBase.hospitals.remove(hospitalById);
+        List<Hospital> list = findHospitalById(id).stream().toList();
+        DataBase.hospitals.remove(list.getFirst());
         return "deleted";
     }
 

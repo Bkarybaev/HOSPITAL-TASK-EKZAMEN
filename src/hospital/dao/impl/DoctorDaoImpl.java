@@ -9,18 +9,15 @@ import hospital.models.Hospital;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorDaoImpl implements DoctorDao, GenericDao<Doctor> {
     @Override
-    public Doctor findDoctorById(Long id) {
-        for (Hospital h : DataBase.hospitals) {
-            for (Doctor d : h.getDoctors()) {
-                if (d.getId().equals(id)){
-                    return d;
-                }
-            }
-        }
-        return null;
+    public Optional<Doctor> findDoctorById(Long id) {
+        return DataBase.hospitals.stream()
+                .flatMap(hospital -> hospital.getDoctors().stream())
+                .filter(doctor -> doctor.getId().equals(id))
+                .findFirst();
     }
 
     @Override
@@ -47,24 +44,26 @@ public class DoctorDaoImpl implements DoctorDao, GenericDao<Doctor> {
     }
     @Override
     public List<Doctor> getAllDoctorsByHospitalId(Long id) {
-        for (Hospital h : DataBase.hospitals) {
-            if (h.getId().equals(id)){
-                return h.getDoctors();
-            }
-        }
-        return List.of();
+
+        return DataBase.hospitals.stream()
+                .flatMap(hospital -> hospital.getDepartments().stream())
+                .filter(department -> department.getId().equals(id))
+                .map(Department::getDoctors)
+                .findFirst()
+                .orElse(List.of());
     }
 
     @Override
     public List<Doctor> getAllDoctorsByDepartmentId(Long id) {
-        for (Hospital h : DataBase.hospitals) {
-            for (Department d : h.getDepartments()) {
-                if (d.getId().equals(id)){
-                    return d.getDoctors();
-                }
-            }
-        }
-        return List.of();
+        return DataBase.hospitals.stream()
+                .flatMap(hospital -> hospital.getDepartments().stream())
+                .filter(department -> department.getId().equals(id))
+                .map(Department::getDoctors)
+                .findFirst()
+                .orElse(List.of());
+
+
+
     }
 
     @Override
@@ -88,7 +87,6 @@ public class DoctorDaoImpl implements DoctorDao, GenericDao<Doctor> {
                 }
             }
         }
-
     }
 
     @Override

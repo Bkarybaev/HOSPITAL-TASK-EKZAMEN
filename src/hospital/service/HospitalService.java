@@ -5,16 +5,17 @@ import hospital.models.Patient;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface HospitalService {
 
     String addHospital(Hospital hospital);
 
-    Hospital findHospitalById(Long id);
+    Optional<Hospital> findHospitalById(Long id);
 
     List<Hospital> getAllHospital();
 
-    List<Patient> getAllPatientFromHospital(Long id);
+    Optional<Patient> getAllPatientFromHospital(Long id);
 
     String deleteHospitalById(Long id);
 

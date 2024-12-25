@@ -5,10 +5,7 @@ import hospital.models.Hospital;
 import hospital.models.Patient;
 import hospital.service.HospitalService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HospitalServiceImpl implements HospitalService {
 
@@ -25,7 +22,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public Hospital findHospitalById(Long id) {
+    public Optional<Hospital> findHospitalById(Long id) {
         try {
             return hospitalDao.findHospitalById(id);
         } catch (Exception e) {
@@ -45,13 +42,13 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public List<Patient> getAllPatientFromHospital(Long id) {
+    public Optional<Patient> getAllPatientFromHospital(Long id) {
         try {
             return hospitalDao.getAllPatientFromHospital(id);
         } catch (Exception e) {
             System.out.println("Failed to get all patients from hospital: " + e.getMessage());
-            return new ArrayList<>();
         }
+        return Optional.empty();
     }
 
     @Override

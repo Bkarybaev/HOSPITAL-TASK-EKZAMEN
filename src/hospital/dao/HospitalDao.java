@@ -5,12 +5,13 @@ import hospital.models.Patient;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface HospitalDao {
     String addHospital(Hospital hospital);
-    Hospital findHospitalById(Long id);
+    Optional<Hospital> findHospitalById(Long id);
     List<Hospital> getAllHospital();
-    List<Patient> getAllPatientFromHospital(Long id);
+    Optional<Patient> getAllPatientFromHospital(Long id);
     String deleteHospitalById(Long id);
     Map<String, Hospital> getAllHospitalByAddress(String address);
 }

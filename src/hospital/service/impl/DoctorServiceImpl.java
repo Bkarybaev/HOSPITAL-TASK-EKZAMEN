@@ -7,18 +7,19 @@ import hospital.service.GenericService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DoctorServiceImpl implements DoctorService, GenericService<Doctor> {
 
     DoctorDaoImpl doctorDao = new DoctorDaoImpl();
 
     @Override
-    public Doctor findDoctorById(Long id) {
+    public Optional<Doctor>  findDoctorById(Long id) {
         try {
             return doctorDao.findDoctorById(id);
         } catch (Exception e) {
             System.out.println("Failed to find doctor by ID: " + e.getMessage());
-            return null;
+            return Optional.of(null);
         }
     }
 
