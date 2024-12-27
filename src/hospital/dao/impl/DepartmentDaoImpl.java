@@ -48,11 +48,12 @@ public class DepartmentDaoImpl implements DepartmentDao, GenericDao<Department> 
 
     @Override
     public String updateById(Long id, Department department) {
-        DataBase.hospitals.stream()
+        Optional<Department> updatedDepartment = DataBase.hospitals.stream()
                 .flatMap(hospital -> hospital.getDepartments().stream())
                 .filter(dep -> dep.getId().equals(id))
-                .peek(o -> o.setDepartmentName(department.getDepartmentName()))
                 .findFirst();
+
+        updatedDepartment.ifPresent(dep -> dep.setDepartmentName(department.getDepartmentName()));
         return "Successfully update!!";
     }
 }
