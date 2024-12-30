@@ -58,7 +58,7 @@ public class PatientDaoImpl implements PatientDao, GenericDao<Patient> {
                 return "Successfully added patients";
             }
         }
-        return "not fount!!!";
+        throw new RuntimeException("not found!!");
     }
 
     @Override
@@ -70,7 +70,7 @@ public class PatientDaoImpl implements PatientDao, GenericDao<Patient> {
                 }
             }
         }
-        return null;
+        throw new RuntimeException("not found!!");
     }
 
     @Override
