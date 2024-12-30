@@ -40,7 +40,7 @@ public class DoctorDaoImpl implements DoctorDao, GenericDao<Doctor> {
                 }
             }
         }
-        return "not fount";
+        throw new RuntimeException("not found!!");
     }
     @Override
     public List<Doctor> getAllDoctorsByHospitalId(Long id) {
