@@ -27,7 +27,13 @@ public class Main {
                 new Patient( "Динара ", " Назарова", 54, Gender.FEMALE),
                 new Patient( "Белек ", " Муратов", 54, Gender.MALE),
                 new Patient( "Арген ", " Эрмеков", 46, Gender.MALE),
-                new Patient( "Сыймык ", " Жоломанов", 36, Gender.MALE)));
+                new Patient( "Сыймык ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "askat ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "askarli ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "sulo ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "dayr ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "bolot ", " Жоломанов", 36, Gender.MALE),
+                new Patient( "nurik ", " Жоломанов", 36, Gender.MALE)));
 
         while (true) {
             System.out.println("""
