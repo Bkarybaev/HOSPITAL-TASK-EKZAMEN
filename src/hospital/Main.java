@@ -82,6 +82,7 @@ public class Main {
                     System.out.println(doctorService.add(1L, new Doctor( "Айзада", "Керимова", Gender.FEMALE, 8)));
                     System.out.println(doctorService.add(1L, new Doctor( "Бакыт", "Исмаилов", Gender.MALE, 10)));
                     System.out.println(doctorService.add(1L, new Doctor( "Жаркын", "Бекмуратов", Gender.MALE, 12)));
+                    System.out.println(doctorService.add(1L, new Doctor( "Жаркын", "Бекмуратов", Gender.MALE, 22)));
                     System.out.println(doctorService.add(1L, new Doctor( "Асел", "Токтосунова", Gender.FEMALE, 9)));
                     System.out.println(doctorService.add(2L, new Doctor( "Чынгыз", "Абылов", Gender.MALE, 11)));
                     System.out.println(doctorService.add(2L, new Doctor( "Нурия", "Сатыбалдиева", Gender.FEMALE, 13)));
@@ -120,10 +121,10 @@ public class Main {
                     System.out.println(departmentService.updateById(2L, new Department( "Диогностический отделение", List.of(new Doctor( "Элнура ", " Атаканова", Gender.FEMALE, 9), new Doctor( "Таалай ", "Ынтымаков", Gender.FEMALE, 7)))));
                 }
                 case 14 -> {
-                    doctorService.removeById(2L);
+                    doctorService.removeById(1L);
                 }
                 case 15 -> {
-                    departmentService.removeById(1L);
+                    departmentService.removeById(2L);
                 }
                 case 16 -> {
                     System.out.println(patientService.sortPatientsByAge("asc"));
