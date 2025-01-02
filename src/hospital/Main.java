@@ -127,10 +127,10 @@ public class Main {
                     System.out.println(departmentService.updateById(2L, new Department( "Диогностический отделение", List.of(new Doctor( "Элнура ", " Атаканова", Gender.FEMALE, 9), new Doctor( "Таалай ", "Ынтымаков", Gender.FEMALE, 7)))));
                 }
                 case 14 -> {
-                    doctorService.removeById(1L);
+                    doctorService.removeById(3L);
                 }
                 case 15 -> {
-                    departmentService.removeById(2L);
+                    departmentService.removeById(3L);
                 }
                 case 16 -> {
                     System.out.println(patientService.sortPatientsByAge("asc"));
